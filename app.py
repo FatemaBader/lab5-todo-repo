@@ -1,11 +1,6 @@
 from flask import Flask
 from flask import render_template
-from flask_mysqldb import MySQL
 
-
-
-
-mysql = MySQL()
 app = Flask(__name__)
 # My SQL Instance configurations
 # Change the HOST IP and Password to match your instance configurations
