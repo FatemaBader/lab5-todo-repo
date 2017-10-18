@@ -3,7 +3,7 @@ from flask import render_template
 from flask_mysqldb import MySQL
 from slackclient import SlackClient
 
-token="xoxp-256862048263-255314393040-258277477876-fc96881a26ccfa65c29bffd451fd945c"
+token=""
 sc = SlackClient(token)
 
 
