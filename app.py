@@ -1,10 +1,6 @@
 from flask import Flask
 from flask import render_template
 from flask_mysqldb import MySQL
-from slackclient import SlackClient
-
-token=""
-sc = SlackClient(token)
 
 
 
@@ -36,9 +32,6 @@ def add(task=None):
     cur= mysql.connection.cursor()
     cur.execute('''INSERT INTO TASK (task_name) VALUES (%s)''',(task,))
     mysql.connection.commit()
-    sc.api_call("chat.postMessage",
-		channel="#todo",text=task,username='D16123580(Task from: 35.197.199.181/add/)',icon_emoji=':steam_locomotive:')
-
     return render_template('index.html', name="New Record is added to the database")
 
 
