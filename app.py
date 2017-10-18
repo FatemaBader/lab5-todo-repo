@@ -1,6 +1,12 @@
 from flask import Flask
 from flask import render_template
 from flask_mysqldb import MySQL
+from slackclient import SlackClient
+
+token="xoxp-256862048263-255314393040-258277477876-fc96881a26ccfa65c29bffd451fd945c"
+sc = SlackClient(token)
+
+
 
 
 mysql = MySQL()
@@ -18,8 +24,6 @@ mysql.init_app(app)
 def statichtml(name=None):
     return render_template('index.html', name=name)
 
-# The first route to access the webservice from http://35.190.217.3:5000/
-#@pp.route("/add") this will create a new endpoints that can be accessed using http://external-ip:5000/add
 @app.route("/list")
 def hello(): # Name of the method
     cur = mysql.connection.cursor() #create a connection to the SQL instance
@@ -32,6 +36,9 @@ def add(task=None):
     cur= mysql.connection.cursor()
     cur.execute('''INSERT INTO TASK (task_name) VALUES (%s)''',(task,))
     mysql.connection.commit()
+    sc.api_call("chat.postMessage",
+		channel="#todo",text=task,username='D16123580(Task from: 35.197.199.181/add/)',icon_emoji=':steam_locomotive:')
+
     return render_template('index.html', name="New Record is added to the database")
 
 
@@ -44,6 +51,7 @@ def update(task=None, no=None):
     data=(task,no)
     cur.execute(update_stmt, data)
     mysql.connection.commit()
+
     return render_template('index.html', name="User recored was updated")      #Return the data in a string format
 
 

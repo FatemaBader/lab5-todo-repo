@@ -1,2 +1,4 @@
 Flask
-Redis
+flask-mysqldb
+flask_prometheus
+slackclient
