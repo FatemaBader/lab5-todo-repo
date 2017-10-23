@@ -7,7 +7,7 @@ app = Flask(__name__)
 # My SQL Instance configurations
 # Change the HOST IP and Password to match your instance configurations
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'malaga123'
+app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'TODOLIST'
 app.config['MYSQL_HOST'] = '35.189.78.147'
 mysql.init_app(app)
